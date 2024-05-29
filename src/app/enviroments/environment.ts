@@ -1,0 +1,4 @@
+export const environment = {
+    apiKey: 'bc06e4ef6e3f4feaa33d442888a86503',
+    AuthorizationGeek: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYzA2ZTRlZjZlM2Y0ZmVhYTMzZDQ0Mjg4OGE4NjUwMyIsInN1YiI6IjY0YjU1YjZlMzc4MDYyMDBhZDE1YTYwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.r02wz2QKgrirlour_iEOzI0Po2VeCehBJZEw6pkYe1Q'
+};

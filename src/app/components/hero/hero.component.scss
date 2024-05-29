@@ -1,0 +1,90 @@
+.hero {
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+    background-color: var(--white-color);
+
+    @media screen and (min-width: 1024px) {
+        padding-top: 13rem;
+
+        .wrapper {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+                "A B";
+                gap: 5rem;
+        }
+    }
+
+    &__col-a {
+        @media screen and (min-width: 1024px) {
+            grid-area: A;
+            text-align: left;
+            align-self: center;    
+        }
+    }
+
+    &__col-b {
+        
+        img {
+            max-width: 90%;
+            border-radius: 2rem;
+        }
+
+        @media screen and (min-width: 1024px) {
+            grid-area: B;
+
+            img {
+                width: 85%;
+            }
+        }
+    }
+
+    &__content{
+        h4 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            
+            @media screen and (min-width: 1024px) {
+                padding-block: 1rem;
+                justify-content: left;
+                gap: 1rem;
+                font-size: 1.8rem;
+                letter-spacing: 0.1rem;
+            }
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            
+            @media screen and (min-width: 1024px) {
+                padding-block: 1rem;
+                font-size: 4.5rem;
+                letter-spacing: 0.1rem;
+            }
+        }
+
+        p {
+            margin-bottom: 2rem;
+            letter-spacing: 0.1rem;
+            font-weight: 500;
+            font-size: 1.7rem;
+            
+            @media screen and (min-width: 1024px) {
+                padding-block: 1rem;
+                font-size: 1.8rem;
+                letter-spacing: 0.1rem;
+            }
+        }
+    }
+
+    &__banner {
+        img {
+            margin-bottom: 2rem;
+            max-width: 100%;
+        }
+    }
+}

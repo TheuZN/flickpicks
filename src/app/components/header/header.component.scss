@@ -1,0 +1,151 @@
+.header {
+    width: 100%;
+    box-shadow: 0 4px 6px 0 #888;
+    padding: 0.5rem 0;
+    position: fixed;
+    background-color: #fff;
+    z-index: 100;
+  
+    &__menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  
+      &__logo {
+        a {
+          display: flex;
+          align-items: center;
+  
+          img {
+            width: 5rem;
+            margin-right: 0.3rem;
+          }
+  
+          span {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            font-weight: 900;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          }
+        }
+      }
+
+      &__navigation {
+        display: none;
+    
+        @media screen and (min-width: 1024px) {
+          display: block;
+    
+          ul {
+            display: flex;
+            gap: 5rem;
+    
+            li a {
+              font-size: 2.2rem;
+              color: var(--primary-color);
+              font-weight: 900;
+    
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      &__search {
+
+        display: none;
+
+        form {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+
+          input {
+            height: 3.3rem;
+            padding-inline: 0.5rem;
+            border: 0.3rem solid var(--primary-color);
+            border-radius: 0.8rem;
+            font-size: 1.6rem;
+          }
+  
+          button {
+            svg {
+              width: 4rem;
+            }
+          }
+        }
+
+        @media screen and (min-width: 1024px) {
+          display: block;
+        }
+        
+      }
+  
+      &__btnMobile {
+        display: block;
+  
+        button svg {
+          width: 5rem;
+        }
+  
+        @media screen and (min-width: 1024px) {
+          display: none;
+        }
+      }
+    }
+  
+  
+    &__navigationMobile {
+      width: 100%;
+  
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+  
+        li{
+
+          a {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 900;
+          }
+
+          input {
+            height: 3.3rem;
+            padding-inline: 0.5rem;
+            border: 0.3rem solid var(--primary-color);
+            border-radius: 0.8rem;
+            font-size: 1.6rem;
+          }
+
+          button {
+            svg {
+              margin-top: 0.3rem;
+              width: 4rem;
+            }
+          }
+
+          form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .flex {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+
+        @media screen and (min-width: 1024px) {
+            display: none;
+          }
+      }
+    }
+  }
+
+  

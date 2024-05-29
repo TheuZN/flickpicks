@@ -1,0 +1,174 @@
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section {
+    padding: 0;
+    padding-block: 3rem;
+}
+
+.resizeSVG {
+    display: flex;
+    gap: 0.5rem;
+
+    svg {
+        width: 5rem;
+        cursor: pointer;
+    }
+}
+
+.heroDetails {
+
+    padding-top: 10rem;
+    padding-bottom: 5rem;
+
+    @media screen and (min-width: 1024px) {
+
+        padding-top: 15rem;
+        padding-bottom: 5rem;
+    
+        .wrapper {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 
+                "A B";
+            border-radius: 5rem;
+        }
+    }
+
+    &__col-a {
+        img {
+            border-radius: 1rem;
+            width: 25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media screen and (min-width: 1024px) {
+            img {
+                width: 35rem;
+            }
+
+            grid-area: A;
+            align-self: center;    
+        }
+    }
+
+    &__col-b {
+
+        &-titleDetails {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 4rem;          
+        }
+
+        &-subTitleDetails {
+            font-size: 2rem;
+            color: var(--primary-color);  
+            margin-bottom: 2rem;      
+        }
+
+        p {
+            margin-block: 0.5rem;
+            text-align: left;
+            font-size: 1.8rem;
+
+            span {
+                color: var(--primary-color);
+                font-weight: 900;
+                font-size: 2rem;
+            }
+        }
+
+        @media screen and (min-width: 1024px) {
+            grid-area: B;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.reviews {
+    margin-block: 5rem;
+
+    &__wrapper {
+
+        display: flex;
+        flex-flow: row;
+        overflow-x: scroll;
+        padding: 0.5rem;
+        gap: 1rem;
+
+        @media screen and (min-width: 1024px) {
+            flex-flow: column;
+            gap: 3rem;
+        }
+
+        svg {
+            width: 5rem;
+        }
+
+        &__card {
+            min-width: 100%;
+            text-align: left;
+            background-color: #f6f6f6;
+            padding: 1rem;
+            border-radius: 2rem;
+            box-shadow: 0 4px 6px 0 #888;
+            height: 40rem;
+            margin-bottom: 1rem;
+
+            & a {
+                color: var(--primary-color);
+                font-weight: 900;
+            }
+
+            & a:hover {
+                text-decoration: underline;
+            }
+
+            @media screen and (max-width: 395px) {
+                height: 100%;
+            }
+
+            @media screen and (min-width: 768px) and (max-width: 1023px) {
+                height: 30rem;
+                padding: 2rem;
+            }
+
+            @media screen and (min-width: 1024px) {
+                height: 25rem;
+                padding: 2rem;
+            }
+
+            &__header {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                text-align: left;
+
+                &__user {
+                    p {
+                        font-size: 1.8rem;
+                        font-size: 800;
+                        color: var(--primary-color);
+                    }
+                }
+            }
+
+            &__text {
+                margin-block: 0.5rem;
+            }
+        }
+    }
+}
+
+.noReviews {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+

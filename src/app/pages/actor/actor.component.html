@@ -1,0 +1,121 @@
+<div *ngIf="modalOpen" (click)="turnFalse()" id="modal__background"></div>
+<div *ngIf="modalOpen" id="modal__details">
+    <div class="wrapper">
+        <div class="modal__header">
+            <div>
+                <h1>Detalhes</h1>
+            </div>
+            <div>
+                <button (click)="modalClose()">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path opacity="0.5"
+                                d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                                fill="#1C2E4B"></path>
+                            <path
+                                d="M8.96967 8.96967C9.26256 8.67678 9.73744 8.67678 10.0303 8.96967L12 10.9394L13.9697 8.96969C14.2626 8.6768 14.7374 8.6768 15.0303 8.96969C15.3232 9.26258 15.3232 9.73746 15.0303 10.0304L13.0607 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0304 15.0303C9.73746 15.3232 9.26258 15.3232 8.96969 15.0303C8.6768 14.7374 8.6768 14.2626 8.96969 13.9697L10.9394 12L8.96967 10.0303C8.67678 9.73744 8.67678 9.26256 8.96967 8.96967Z"
+                                fill="#1C2E4B"></path>
+                        </g>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal__info">
+            <div class="modal__info__col-a">
+                <img src="{{ imagePath }}{{ imageModal }}" alt="">
+            </div>
+
+            <div class="modal__info__col-b">
+                <h2>{{ titleModal }}</h2>
+                <p><span class="modal__info__col-b-color">Overview: </span>{{ overviewModal }}</p>
+                <p><span class="modal__info__col-b-color">Average: </span>{{ averageModal.toFixed(1) }}</p>
+                <p><span class="modal__info__col-b-color">Popularity: </span>{{ popularityModal }}</p>
+                <p><span class="modal__info__col-b-color">Release: </span>{{ releaseModal | date }}</p>
+                <p (click)="getDetail()" class="modal__info__col-b-btn"><span class="modal__info__col-b-color">More
+                        details</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#001d4a" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                    </svg></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-header />
+
+<div class="min-height">
+    <div *ngIf="personDetail.length === 0" class="cardsSearch__cards__card__error wrapper">
+        <h3>There are no actors that matched your query. Please try entering different search terms to find what you're looking for.</h3>
+    </div>
+    <section class="heroActor">
+        <div *ngFor="let item of personDetail" class="wrapper">
+            <div class="heroActor__col-a">
+                <img *ngIf="item.profile_path; else noImage" [src]="imagePath + '/' + item.profile_path" alt="">
+                    <ng-template #noImage>
+                        <p class="noReviews">Without image</p>
+                    </ng-template>
+            </div>
+    
+            <div class="heroActor__col-b">
+                <h2 class="heroActor__col-b-titleDetails">{{ item.name }}</h2>
+                <h3 class="heroActor__col-b-subTitleDetails">{{ item.place_of_birth }}</h3>
+                <p *ngIf="item.biography; else noBiography">
+                    <span>Biography:</span> {{ item.biography }}
+                </p>
+                  <ng-template #noBiography>
+                    <p class="noBiography">Biography not available</p>
+                  </ng-template>            
+                <p (click)="getBack()" class="modal__info__col-b-btn"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#001d4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><span>Back to home</span></p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="images">
+        <div class="wrapper">
+            <h2 class="title">Images</h2>
+            <div [ngClass]="{'images__wrapper--center': personImages.length <= 4}" class="images__wrapper">
+                <div *ngIf="personImages.length === 0">
+                    <p class="noReviews">Still without images</p>
+                </div>
+    
+                <div *ngFor="let item of personImages">
+                    <div class="images__wrapper__img">
+                        <img src="{{ imagePath }}/{{ item.file_path }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="gallery">
+        <div class="wrapper">
+            <h2 class="title">Known For</h2>
+            <div *ngIf="personCredits.length === 0">
+                <p class="noReviews">Still without movies</p>
+            </div>
+            <div class="gallery__wrapper">
+                <div *ngFor="let item of personCredits">
+                    <ul class="gallery__wrapper__div">
+                        <a
+                            (click)="modalShow(item.poster_path, item.title, item.vote_average, item.overview, item.popularity, item.release_date, item.id)">
+                            <li>
+                                <img src="{{ item.poster_path ? (imagePath + item.poster_path) : '../../../assets/movie.jpg' }}" alt="{{ item.title }}" />
+                                <span class="gallery__wrapper__div__average">{{ item.vote_average.toFixed(1) }}</span>
+                                <span class="gallery__wrapper__div__title">{{ item.title }}</span>
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<app-footer />

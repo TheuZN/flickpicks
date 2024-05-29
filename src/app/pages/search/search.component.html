@@ -1,0 +1,33 @@
+<app-header/>
+<div class="min-height">
+    <section class="heroSearch">
+        <div class="wrapper">
+            <img src="../../../assets/find.png" alt="">
+        </div>
+    </section>
+    
+    <section class="cardsSearch">
+        <div class="wrapper">
+            <div class="cardsSearch__cards">
+                <div *ngIf="moviesSearch.length === 0" class="cardsSearch__cards__card__error">
+                    <h3>There are no movies that matched your query. Please try entering different search terms to find what you're looking for.</h3>
+                </div>
+                <div *ngFor="let item of moviesSearch" class="cardsSearch__cards__card">
+                    <div class="cardsSearch__cards__card__img">
+                        <img src="{{ item.poster_path ? (imagePath + item.poster_path) : '../../../assets/movie.jpg' }}" alt="{{ item.title }}" />
+                    </div>
+    
+                    <div class="cardsSearch__cards__card__text">
+                        <p><span class="cardsSearch__cards__card__text-title">{{ item.title }}</span> - <span>{{ item.release_date }}</span>  - <span>{{ item.original_language }}</span></p>
+                        <p class="cardsSearch__cards__card__text-overview">{{ item.overview }}</p>
+                        <p (click)="getDetail(item.id)" class="cardsSearch__cards__card__text-btn"><span class="modal__info__col-b-color">More details</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#001d4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<app-footer/>
+

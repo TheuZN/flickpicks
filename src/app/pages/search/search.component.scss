@@ -1,0 +1,91 @@
+.heroSearch {
+    padding-top: 10rem;
+    margin-bottom: 3rem;
+
+    img {
+        border-radius: 1rem;
+        width: 100%;
+    }
+}
+
+section {
+    padding: 0;
+}
+
+.cardsSearch {
+    &__cards {
+        &__card {
+            background-color: #f6f6f6;
+            margin-block: 2rem;
+            padding: 2rem;
+            border-radius: 2rem;
+            box-shadow: 0 4px 6px 0 #888;
+
+            @media screen and (min-width: 1024px) {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                grid-template-areas: 
+                "A B B B B";
+            }
+
+            &__img {
+
+                img {
+                    width: 20rem;
+                    border-radius: 1rem;
+                }
+
+                @media screen and (min-width: 1024px) {
+                    grid-area: A;
+                    margin-right: 2rem;
+                }  
+            }
+
+            &__error {
+                h3 {
+                    font-size: 4rem;
+                    color: var(--primary-color);
+                    font-weight: 900;
+                }    
+            }
+
+            &__text {
+                
+                @media screen and (min-width: 1024px) {
+                    grid-area: B;
+                    text-align: left;    
+                }  
+
+                &-title {
+                    font-size: 3rem;
+                    font-weight: 900;
+                    color: var(--primary-color);
+                }
+
+                &-overview {
+                    text-align: left;
+                    margin-block: 0.5rem;
+                    font-size: 1.7rem;
+                }
+
+                &-btn {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    color: var(--primary-color);
+                    font-weight: 900; 
+                    font-size: 1.8rem;              
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+
+                    svg {
+                        width: 4rem;
+                    }
+                }
+            }
+        }
+    }
+}
