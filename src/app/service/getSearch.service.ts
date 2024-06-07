@@ -2,12 +2,12 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../enviroments/environment.development";
 import { Observable, map } from "rxjs";
+import { SearchModel } from "../modal/movies.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class GetSearchService {
-
     apiKey = environment.apiKey;
     autorizationGeek = environment.AuthorizationGeek;
 
@@ -15,7 +15,7 @@ export class GetSearchService {
 
     constructor(private http: HttpClient) { }
 
-    getMovieSearch(search: any): Observable<any[]> {
+    getMovieSearch(search: number): Observable<SearchModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
@@ -29,7 +29,4 @@ export class GetSearchService {
             })
         );
     }
-
-
-
 }

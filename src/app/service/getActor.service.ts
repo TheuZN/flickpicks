@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../enviroments/environment.development";
 import { Observable, map } from "rxjs";
+import { ImagesDetailModel, PersonCreditModel, PersonDetailModel } from "../modal/person.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -17,15 +18,15 @@ export class GetPersonService {
 
     constructor(private http: HttpClient) { }
 
-    getDetailPerson(person: string): Observable<any> {
+    getDetailPerson(person: number): Observable<PersonDetailModel> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
         });
-        return this.http.get<any>(`${this.apiUrlPerson}${person}`, { headers });
+        return this.http.get<PersonDetailModel>(`${this.apiUrlPerson}${person}`, { headers });
     }
 
-    getImagePerson(person: any): Observable<any[]> {
+    getImagePerson(person: number): Observable<ImagesDetailModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
@@ -40,7 +41,7 @@ export class GetPersonService {
         );
     }
 
-    getCreditsPerson(person: any): Observable<any[]> {
+    getCreditsPerson(person: number): Observable<PersonCreditModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`

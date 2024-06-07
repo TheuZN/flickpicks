@@ -16,7 +16,7 @@ export class ActorComponent {
 
   modalOpen: boolean = false;
 
-  idPerson: any;
+  idPerson: number | undefined = undefined;
 
   imagePath: string = "https://image.tmdb.org/t/p/w500";
 
@@ -28,23 +28,26 @@ export class ActorComponent {
 
   imageModal: string = "";
   titleModal: string = "";
-  averageModal: any;
+  averageModal: number | undefined = undefined;
   overviewModal: string = "";
-  popularityModal: any;
+  popularityModal: number | undefined = undefined;
   releaseModal: string = "";
-  idModal: any;
+  idModal: number | undefined = undefined;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.idPerson = params.get('idPerson');
-      this.scrollToTop();
-      this.getDetailsPerson(this.idPerson);
-      this.getImagesPerson(this.idPerson);
-      this.getCreditsPerson(this.idPerson);
+      const idPersonParam = params.get('idPerson');
+      this.idPerson = idPersonParam !== null ? Number(idPersonParam) : undefined;
+      if (this.idPerson !== undefined) {
+        this.scrollToTop();
+        this.getDetailsPerson(this.idPerson);
+        this.getImagesPerson(this.idPerson);
+        this.getCreditsPerson(this.idPerson);
+      }
     });
   }
-
-  getDetailsPerson(idPerson: string): void {
+  
+  getDetailsPerson(idPerson: number): void {
     this.getPersonService.getDetailPerson(idPerson).subscribe(
       data => {
         this.personDetail = [data];
@@ -53,7 +56,7 @@ export class ActorComponent {
     );
   }
 
-  getImagesPerson(idPerson: string): void {
+  getImagesPerson(idPerson: number): void {
     this.getPersonService.getImagePerson(idPerson).subscribe(
       data => {
         this.personImages = data;
@@ -62,7 +65,7 @@ export class ActorComponent {
     );
   }
 
-  getCreditsPerson(idPerson: string): void {
+  getCreditsPerson(idPerson: number): void {
     this.getPersonService.getCreditsPerson(idPerson).subscribe(
       data => {
         this.personCredits = data;
@@ -89,7 +92,7 @@ export class ActorComponent {
     document.body.classList.remove('scrool-none');
   }
 
-  modalShow(image: string, title: string, average: number, overview: string, popularity: number, release: string, id: any) {
+  modalShow(image: string, title: string, average: number, overview: string, popularity: number, release: string, id: number) {
     this.imageModal = image;
     this.titleModal = title;
     this.averageModal = average;

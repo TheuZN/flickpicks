@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../enviroments/environment.development";
 import { Observable, map } from "rxjs";
+import { DetailMovieModel } from "../modal/detail.interface";
+import { CreditsDetailModel, DetailImageModel, RecommendationDetailModel, ReviewDetailModel } from "../modal/movies.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +21,7 @@ export class GetDetailMovieService {
 
     constructor(private http: HttpClient) { }
 
-    getDetailMovies(id: string): Observable<any> {
+    getDetailMovies(id: number): Observable<any> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
@@ -27,7 +29,7 @@ export class GetDetailMovieService {
         return this.http.get<any>(`${this.apiUrlDetailList}${id}`, { headers });
     }
 
-    getImageMovies(id: any): Observable<any[]> {
+    getImageMovies(id: number): Observable<DetailImageModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
@@ -38,11 +40,10 @@ export class GetDetailMovieService {
                 if (response && Array.isArray(response.backdrops)) {
                     return response.backdrops.slice(0, 10);
                 }
-            })
-        );
+            }));
     }
 
-    getRecommendationMovies(id: any): Observable<any[]> {
+    getRecommendationMovies(id: number): Observable<RecommendationDetailModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
@@ -53,7 +54,7 @@ export class GetDetailMovieService {
         );
     }
 
-    getReviewMovies(id: any): Observable<any[]> {
+    getReviewMovies(id: number): Observable<ReviewDetailModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`
@@ -64,7 +65,7 @@ export class GetDetailMovieService {
         );
     }
 
-    getCredits(id: any): Observable<any[]> {
+    getCredits(id: number): Observable<CreditsDetailModel[]> {
         const headers = new HttpHeaders({
             accept: 'application/json',
             Authorization: `${this.autorizationGeek}`

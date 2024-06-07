@@ -20,7 +20,7 @@
             <div class="modal__info__col-b">
                 <h2>{{ titleModal }}</h2>
                 <p><span class="modal__info__col-b-color">Overview: </span>{{ overviewModal }}</p>
-                <p><span class="modal__info__col-b-color">Average: </span>{{ averageModal.toFixed(1) }}</p>
+                <p><span class="modal__info__col-b-color">Average: </span>{{ averageModal?.toFixed(1) }}</p>
                 <p><span class="modal__info__col-b-color">Popularity: </span>{{ popularityModal }}</p>
                 <p><span class="modal__info__col-b-color">Release: </span>{{ releaseModal | date }}</p>
                 <p (click)="getDetail()" class="modal__info__col-b-btn"><span class="modal__info__col-b-color">More details</span><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#001d4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></p>
@@ -135,7 +135,7 @@
                     <a (click)="modalShow(item.poster_path, item.title, item.vote_average, item.overview, item.popularity, item.release_date, item.id)">
                         <li>
                             <img src="{{ imagePath }}{{ item.poster_path }}" alt="{{ item.title }}"/>
-                            <span class="gallery__wrapper__div__average">{{ item.vote_average.toFixed(1) }}</span>
+                            <span class="gallery__wrapper__div__average">{{ item?.vote_average?.toFixed(1) }}</span>
                             <span class="gallery__wrapper__div__title">{{ item.title }}</span>
                         </li>
                     </a>

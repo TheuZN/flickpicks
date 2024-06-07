@@ -31,7 +31,7 @@
             <div class="modal__info__col-b">
                 <h2>{{ titleModal }}</h2>
                 <p><span class="modal__info__col-b-color">Overview: </span>{{ overviewModal }}</p>
-                <p><span class="modal__info__col-b-color">Average: </span>{{ averageModal.toFixed(1) }}</p>
+                <p><span class="modal__info__col-b-color">Average: </span>{{ averageModal?.toFixed(1) }}</p>
                 <p><span class="modal__info__col-b-color">Popularity: </span>{{ popularityModal }}</p>
                 <p><span class="modal__info__col-b-color">Release: </span>{{ releaseModal | date }}</p>
                 <p (click)="getDetail()" class="modal__info__col-b-btn"><span class="modal__info__col-b-color">More

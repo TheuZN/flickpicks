@@ -4,6 +4,8 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { GetDetailMovieService } from '../../service/getDetail.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DetailMovieModel } from '../../modal/detail.interface';
+import { CreditsDetailModel, DetailImageModel, RecommendationDetailModel, ReviewDetailModel } from '../../modal/movies.interface';
 
 @Component({
   selector: 'app-details',
@@ -18,42 +20,45 @@ export class DetailsComponent implements OnInit {
 
   currentIndex = 0;
 
-  idSession: any;
+  idSession: number | undefined = undefined;
 
   limiteCaracteres: number = 500;
   textOver: string = "";
 
   constructor(private getDetailMovieService: GetDetailMovieService, private router: Router, private route: ActivatedRoute) { }
 
-  moviesDetail: any[] = [];
-  moviesImage: any[] = [];
-  moviesRecommendations: any[] = [];
-  moviesReviews: any[] = [];
-  moviesCredits: any[] = [];
+  moviesDetail: DetailMovieModel[] = [];
+  moviesImage: DetailImageModel[] = [];
+  moviesRecommendations: RecommendationDetailModel[] = [];
+  moviesReviews: ReviewDetailModel[] = [];
+  moviesCredits: CreditsDetailModel[] = [];
 
   imageModal: string = "";
   titleModal: string = "";
-  averageModal: any;
+  averageModal: number | undefined = undefined;
   overviewModal: string = "";
-  popularityModal: any;
+  popularityModal: number | undefined = undefined;
   releaseModal: string = "";
-  idModal: any;
+  idModal: number | undefined = undefined;
 
   imagePath: string = "https://image.tmdb.org/t/p/w500";
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.idSession = params.get('id');
-      this.getDetails(this.idSession);
-      this.getImage(this.idSession);
-      this.getRecommendations(this.idSession);
-      this.getReviews(this.idSession);
-      this.getCredit(this.idSession);
-      this.scrollToTop();
+      const idParam = params.get('id');
+      this.idSession = idParam !== null ? Number(idParam) : undefined;
+      if (this.idSession !== undefined) {
+        this.getDetails(this.idSession);
+        this.getImage(this.idSession);
+        this.getRecommendations(this.idSession);
+        this.getReviews(this.idSession);
+        this.getCredit(this.idSession);
+        this.scrollToTop();
+      }
     });
   }
 
-  getDetails(idSession: string): void {
+  getDetails(idSession: number): void {
     this.getDetailMovieService.getDetailMovies(idSession).subscribe(
       data => {
         this.moviesDetail = [data];
@@ -61,7 +66,7 @@ export class DetailsComponent implements OnInit {
     );
   }
 
-  getImage(idSession: any) {
+  getImage(idSession: number) {
     this.getDetailMovieService.getImageMovies(idSession).subscribe(
       data => {
         if (Array.isArray(data)) {
@@ -70,7 +75,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  getRecommendations(idSession: any) {
+  getRecommendations(idSession: number) {
     this.getDetailMovieService.getRecommendationMovies(idSession).subscribe(
       data => {
         if (Array.isArray(data)) {
@@ -79,7 +84,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  getReviews(idSession: any) {
+  getReviews(idSession: number) {
     this.getDetailMovieService.getReviewMovies(idSession).subscribe(
       data => {
         if (Array.isArray(data)) {
@@ -88,7 +93,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  getCredit(idSession: any) {
+  getCredit(idSession: number) {
     this.getDetailMovieService.getCredits(idSession).subscribe(
       data => {
         if (Array.isArray(data)) {
@@ -97,7 +102,7 @@ export class DetailsComponent implements OnInit {
       });
   }
 
-  modalShow(image: string, title: string, average: number, overview: string, popularity: number, release: string, id: any) {
+  modalShow(image: string, title: string, average: number, overview: string, popularity: number, release: string, id: number) {
     this.imageModal = image;
     this.titleModal = title;
     this.averageModal = average;
@@ -141,7 +146,7 @@ export class DetailsComponent implements OnInit {
     window.scrollTo({ top: 0});
   }
 
-  getActor(person: any) {
+  getActor(person: number) {
     this.router.navigate(['person', person]);
   }
 

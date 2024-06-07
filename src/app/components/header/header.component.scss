@@ -72,6 +72,8 @@
   
           button {
             svg {
+              display: flex;
+              align-self: center;
               width: 4rem;
             }
           }

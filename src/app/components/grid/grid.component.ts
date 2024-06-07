@@ -25,11 +25,11 @@ export class GridComponent {
 
   imageModal: string = "";
   titleModal: string = "";
-  averageModal: any;
+  averageModal: number | undefined = undefined;
   overviewModal: string = "";
-  popularityModal: any;
+  popularityModal: number | undefined = undefined;
   releaseModal: string = "";
-  idModal: any = "";
+  idModal: number | undefined = undefined;
 
   imagePath: string = "https://image.tmdb.org/t/p/w500";
 
@@ -74,7 +74,7 @@ export class GridComponent {
       data => { if (Array.isArray(data)) { this.moviesDevList = data; }});
   }
 
-  modalShow(image: string, title: string, average: number, overview: string, popularity: number, release: string, id: any){    
+  modalShow(image: string, title: string, average: number, overview: string, popularity: number, release: string, id: number){    
     this.imageModal = image;
     this.titleModal = title;
     this.averageModal = average;

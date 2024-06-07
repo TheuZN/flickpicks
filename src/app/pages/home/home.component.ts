@@ -3,8 +3,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { HeroComponent } from '../../components/hero/hero.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { GridComponent } from '../../components/grid/grid.component';
-import { MoviesModel } from '../../modal/movies.interface';
-import { GetMovieService } from '../../service/getMovie.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
